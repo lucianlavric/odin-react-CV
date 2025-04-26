@@ -1,12 +1,41 @@
-# React + Vite
+# CV Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React app to create, edit, and display a personal CV (resume).  
+Users can add, edit, and remove entries for Personal Information, Education, and Work Experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add personal information (name, email, phone number)
+- Add multiple education and work experience entries
+- Edit and submit entries
+- Form inputs toggle into static text once submitted
+- Add new entries dynamically
+- Remove unwanted entries
+- (Planned) Download CV as a PDF
 
-## Expanding the ESLint configuration
+## Built With
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite (for project setup)
+- CSS for basic styling
+
+## Getting Started
+
+To run the project locally:
+
+```bash
+git clone <your-repo-url>
+cd <project-directory>
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173` in your browser to view the app.
+
+## Future Improvements
+
+- Download the completed CV as a PDF
+- Add form validation
+- Improve mobile responsiveness
+- Use a fancier date picker
+- Better UI/UX design
