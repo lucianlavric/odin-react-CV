@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import './index.css'
 import Personal from './components'
 import Education from './components/Education'
 
@@ -57,6 +58,16 @@ function App() {
     });
   }
 
+  function removeEducation(index){
+    setCVData(prev =>{
+      const shallowCopy = [...prev.Education].filter((_,i) => i !== index);
+      return{
+        ...prev,
+        Education: shallowCopy
+      }
+    })
+  }
+
   function handleEducationChange(index, updatedEntry) {
     // store the state array as a new variable
     // set the index of the array to be the updatedEntry
@@ -67,7 +78,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="app">
       <div className='CV-title'>
         <h1>Welcome to the CV generator</h1>
       </div>
@@ -76,6 +87,7 @@ function App() {
       data={CVdata.Education}
       onChange={handleEducationChange}
       toggleEdit={toggleEdit}
+      removeEducation={removeEducation}
       // handleAddEntry={handleAddEntry}
       />
       <button
@@ -85,7 +97,7 @@ function App() {
           Add another education
       </button>
 
-    </>
+    </div>
   )
 }
 

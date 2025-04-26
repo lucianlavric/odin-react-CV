@@ -1,15 +1,16 @@
+import "../../index.css"
 
 
-export default function Education({ data, onChange, toggleEdit }){
+export default function Education({ data, onChange, toggleEdit, removeEducation }){
     // Get input for School name, Title of study, graduation date
     // 
     return(
-        <>
+        <div className="card-container">
         <h2>Enter Education</h2>
         {data.map((entry, index) => (
   <div key={index}>
     {entry.isEditing ? (
-      <form>
+      <form className="education-inputs">
         <input
           type="text"
           placeholder="School Name"
@@ -41,9 +42,16 @@ export default function Education({ data, onChange, toggleEdit }){
         }}>
           Submit
         </button>
+        <button type="button" 
+        onClick={() => {
+            removeEducation(index)
+            // handleAddEntry();
+        }}>
+          Delete
+        </button>
       </form>
     ) : (
-      <div>
+      <div className="education-card">
         <p><strong>School:</strong> {entry.name}</p>
         <p><strong>Title:</strong> {entry.title}</p>
         <p><strong>Date:</strong> {entry.date}</p>
@@ -55,6 +63,6 @@ export default function Education({ data, onChange, toggleEdit }){
   </div>
 ))}
             
-        </>
+        </div>
     )
 }

@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.app{
+    display: flex;
+    flex-direction: column;
+}
+
+.education-card{
+    display: flex;
+    border: 1px black;
+    border-radius: 5px;
+}
+
+/* .education-inputs{
+    display: flex;
+    justify-content: space-between;
+} */
+/* 
+.card-container{
+    display: flex;
+} */
