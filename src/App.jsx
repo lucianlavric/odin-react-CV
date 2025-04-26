@@ -3,6 +3,8 @@ import './App.css'
 import './index.css'
 import Personal from './components'
 import Education from './components/Education'
+import Experience from './components/Experience'
+import SubmitForm from './components/SubmitForm'
 
 
 function App() {
@@ -28,7 +30,8 @@ function App() {
         date: '', // Way to track date to and from
         isEditing: true,
       }
-    ]
+    ],
+    isSubmitted: false
 })
 
   function handlePersonChange(updatedPersonInfo){
@@ -38,7 +41,7 @@ function App() {
     }))
   }
 
-  function handleAddEntry(){
+  function handleAddEntryEducation(){
     setCVData(prev =>(
       {
         ...prev,
@@ -47,7 +50,7 @@ function App() {
     ) )
   }
 
-  function toggleEdit(index, isEditing){
+  function toggleEditEducation(index, isEditing){
     setCVData(prev => {
       const updated = [...prev.Education];
       updated[index] = { ...updated[index], isEditing };
@@ -68,6 +71,15 @@ function App() {
     })
   }
 
+  function handleAddEntryWorkExperience(){
+    setCVData(prev =>(
+      {
+        ...prev,
+        WorkExperience:[...prev.WorkExperience, {name:"", title:"", date:"", isEditing:true}]
+      }
+    ) )
+  }
+
   function handleEducationChange(index, updatedEntry) {
     // store the state array as a new variable
     // set the index of the array to be the updatedEntry
@@ -77,27 +89,96 @@ function App() {
     setCVData((prev) => ({...prev, Education: updatedArray}));
   }
 
+  function handleWorkExperienceChange(index, updatedEntry){
+    const updatedArray = [...CVdata.WorkExperience];
+    updatedArray[index] = updatedEntry;
+    setCVData((prev) => ({...prev, WorkExperience: updatedArray}));
+  }
+
+  function toggleEditExperience(index, isEditing){
+    setCVData(prev => {
+      const updated = [...prev.WorkExperience];
+      updated[index] = { ...updated[index], isEditing };
+      return {
+        ...prev,
+        WorkExperience: updated
+      };
+    });
+  }
+
+  function removeExperience(index){
+    setCVData(prev =>{
+      const shallowCopy = [...prev.WorkExperience].filter((_,i) => i !== index);
+      return{
+        ...prev,
+        WorkExperience: shallowCopy
+      }
+    })
+  }
+
+  function handleSubmitForm(){
+    setCVData((prev) => ({
+      ...prev,
+      isSubmitted: true
+    }))
+
+    // take the personal info section
+    // take the education and experience sections that have isEditing set to false
+  }
+
   return (
     <div className="app">
-      <div className='CV-title'>
+      {CVdata.isSubmitted === false ? (
+        <div>
+        <div className='CV-title'>
         <h1>Welcome to the CV generator</h1>
-      </div>
+        </div>
       <Personal data={CVdata.PersonalInfo} onChange={handlePersonChange}/>
       <Education 
       data={CVdata.Education}
       onChange={handleEducationChange}
-      toggleEdit={toggleEdit}
+      toggleEditEducation={toggleEditEducation}
       removeEducation={removeEducation}
-      // handleAddEntry={handleAddEntry}
       />
       <button
         type="button"
-        onClick={handleAddEntry}
+        onClick={handleAddEntryEducation}
         >
           Add another education
       </button>
 
-    </div>
+      <Experience
+        data={CVdata.WorkExperience}
+        onChange={handleWorkExperienceChange}
+        toggleEdit={toggleEditExperience}
+        removeExperience={removeExperience}
+      />
+      <button
+        type="button"
+        onClick={handleAddEntryWorkExperience}
+        >
+          Add another experience
+      </button>
+
+      <button
+      type="submit"
+      onClick={handleSubmitForm}>
+        Generate CV
+      </button>
+
+      
+        </div>
+    
+      ) : (
+        <div>
+          <SubmitForm 
+            data={CVdata}
+            // entire CV data
+            // a condition for isEditing to be FALSE for Education and WorkExperience entries
+          />
+        </div>
+      )}
+  </div>
   )
 }
 

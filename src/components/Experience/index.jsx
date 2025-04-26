@@ -1,19 +1,19 @@
 import "../../index.css"
 
 
-export default function Education({ data, onChange, toggleEditEducation, removeEducation }){
+export default function Experience({ data, onChange, toggleEdit, removeExperience }){
     // Get input for School name, Title of study, graduation date
     // 
     return(
         <div className="card-container">
-        <h2>Enter Education</h2>
+        <h2>Enter Experience</h2>
         {data.map((entry, index) => (
   <div key={index}>
     {entry.isEditing ? (
-      <form className="education-inputs">
+      <form className="education-and-experience-inputs">
         <input
           type="text"
-          placeholder="School Name"
+          placeholder="Company name"
           value={entry.name}
           onChange={(e) =>
             onChange(index, { ...entry, name: e.target.value })
@@ -21,7 +21,7 @@ export default function Education({ data, onChange, toggleEditEducation, removeE
         />
         <input
           type="text"
-          placeholder="Title of Study"
+          placeholder="Title of Role"
           value={entry.title}
           onChange={(e) =>
             onChange(index, { ...entry, title: e.target.value })
@@ -29,7 +29,15 @@ export default function Education({ data, onChange, toggleEditEducation, removeE
         />
         <input
           type="text"
-          placeholder="Graduation Date"
+          placeholder="Role Description"
+          value={entry.responsibilities}
+          onChange={(e) =>
+            onChange(index, { ...entry, responsibilities: e.target.value })
+          }
+        />
+        <input
+          type="text"
+          placeholder="date"
           value={entry.date}
           onChange={(e) =>
             onChange(index, { ...entry, date: e.target.value })
@@ -37,23 +45,24 @@ export default function Education({ data, onChange, toggleEditEducation, removeE
         />
         <button type="button" 
         onClick={() => {
-            toggleEditEducation(index, false)
+            toggleEdit(index, false)
         }}>
           Submit
         </button>
         <button type="button" 
         onClick={() => {
-            removeEducation(index)
+            removeExperience(index)
         }}>
           Delete
         </button>
       </form>
     ) : (
-      <div className="education-card">
-        <p><strong>School:</strong> {entry.name}</p>
-        <p><strong>Title:</strong> {entry.title}</p>
+      <div className="entered-card">
+        <p><strong>Company:</strong> {entry.name}</p>
+        <p><strong>Role:</strong> {entry.title}</p>
+        <p><strong>Description:</strong> {entry.responsibilities}</p>
         <p><strong>Date:</strong> {entry.date}</p>
-        <button type="button" onClick={() => toggleEditEducation(index, true)}>
+        <button type="button" onClick={() => toggleEdit(index, true)}>
           Edit
         </button>
       </div>

@@ -9,7 +9,7 @@
     flex-direction: column;
 }
 
-.education-card{
+.entered-card{
     display: flex;
     border: 1px black;
     border-radius: 5px;
