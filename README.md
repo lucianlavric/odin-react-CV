@@ -24,8 +24,8 @@ Users can add, edit, and remove entries for Personal Information, Education, and
 To run the project locally:
 
 ```bash
-git clone <your-repo-url>
-cd <project-directory>
+git clone https://github.com/lucianlavric/odin-react-CV.git
+cd odin-react-CV
 npm install
 npm run dev
 ```
