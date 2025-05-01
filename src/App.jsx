@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 import './index.css'
-import Personal from './components'
+import Personal from './components/Personal'
 import Education from './components/Education'
 import Experience from './components/Experience'
 import SubmitForm from './components/SubmitForm'
-
+import DarkModeToggler from './components/Toggle/Index'
+import { ThemeProvider } from './context/ThemeContext'
 
 function App() {
   const [CVdata, setCVData] = useState({
@@ -127,10 +128,13 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <>
+      <ThemeProvider>
+      <DarkModeToggler />
+      <div className="flex flex-col items-center justify-center dark:bg-gray-900">
       {CVdata.isSubmitted === false ? (
         <div>
-        <div className='CV-title'>
+        <div>
         <h1>Welcome to the CV generator</h1>
         </div>
       <Personal data={CVdata.PersonalInfo} onChange={handlePersonChange}/>
@@ -142,6 +146,7 @@ function App() {
       />
       <button
         type="button"
+        className="p-3 bg-sky-500 hover:bg-sky-700 rounded-xl"
         onClick={handleAddEntryEducation}
         >
           Add another education
@@ -155,6 +160,7 @@ function App() {
       />
       <button
         type="button"
+        className="p-3 bg-sky-500 hover:bg-sky-700 rounded-xl"
         onClick={handleAddEntryWorkExperience}
         >
           Add another experience
@@ -162,6 +168,7 @@ function App() {
 
       <button
       type="submit"
+      className="p-3 bg-sky-500 hover:bg-sky-700 rounded-xl"
       onClick={handleSubmitForm}>
         Generate CV
       </button>
@@ -179,6 +186,8 @@ function App() {
         </div>
       )}
   </div>
+      </ThemeProvider>
+    </> 
   )
 }
 

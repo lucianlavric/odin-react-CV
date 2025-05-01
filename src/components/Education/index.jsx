@@ -28,20 +28,24 @@ export default function Education({ data, onChange, toggleEditEducation, removeE
           }
         />
         <input
-          type="text"
+          type="date"
           placeholder="Graduation Date"
           value={entry.date}
           onChange={(e) =>
             onChange(index, { ...entry, date: e.target.value })
           }
         />
-        <button type="button" 
+        <button 
+        type="button" 
+        className="p-2 bg-sky-500 hover:bg-sky-700 rounded-xl"
         onClick={() => {
             toggleEditEducation(index, false)
         }}>
           Submit
         </button>
-        <button type="button" 
+        <button 
+        type="button" 
+        className="p-2 bg-sky-500 hover:bg-sky-700 rounded-xl"
         onClick={() => {
             removeEducation(index)
         }}>

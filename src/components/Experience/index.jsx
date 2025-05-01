@@ -36,20 +36,24 @@ export default function Experience({ data, onChange, toggleEdit, removeExperienc
           }
         />
         <input
-          type="text"
+          type="date"
           placeholder="date"
           value={entry.date}
           onChange={(e) =>
             onChange(index, { ...entry, date: e.target.value })
           }
         />
-        <button type="button" 
+        <button 
+        type="button" 
+        className="p-2 bg-sky-500 hover:bg-sky-700 rounded-xl"
         onClick={() => {
             toggleEdit(index, false)
         }}>
           Submit
         </button>
-        <button type="button" 
+        <button 
+        type="button" 
+        className="p-2 bg-sky-500 hover:bg-sky-700 rounded-xl"
         onClick={() => {
             removeExperience(index)
         }}>
